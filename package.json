@@ -33,10 +33,13 @@
   },
   "homepage": "https://github.com/zooniverse/zoo-react-starterify",
   "dependencies": {
+    "firebase": "^2.4.0",
     "history": "^1.13.1",
+    "re-base": "^1.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-router": "1.0.0-rc3"
+    "react-router": "1.0.0-rc3",
+    "reactfire": "^0.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",

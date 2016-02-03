@@ -1,11 +1,31 @@
 import React from 'react';
 import Bar from './Bar';
-import Data from '../sample-data';
+
+import Rebase from 're-base';
+const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 
 export default class Results extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+
+  componentDidMount() {
+    this.ref = base.bindToState('/', {
+      context: this,
+      state: 'data',
+      asArray: true,
+    });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
   _calcPercentage(votes) {
-    const totalVotes = Data.map(item => item.votes).reduce((a, b) => a + b);
+    const totalVotes = this.state.data.map(item => item.votes).reduce((a, b) => a + b);
 
     return Math.round((votes / totalVotes) * 100);
   }
@@ -14,9 +34,9 @@ export default class Results extends React.Component {
     return (
       <div>
         <h2>This is where results will go...</h2>
-        {Data.map(item =>
+        {this.state.data.map((item, index) =>
           <Bar
-            key={item.description}
+            key={index}
             candidate={item.description}
             percentage={this._calcPercentage(item.votes)}
           />
