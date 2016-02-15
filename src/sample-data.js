@@ -5,7 +5,7 @@ export default [
   },
   {
     description: 'Dwarf Planet',
-    votes: 19,
+    votes: 20,
   },
   {
     description: 'Other',

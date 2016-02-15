@@ -13,12 +13,7 @@ export default class Candidate extends React.Component {
 
   render() {
     return (
-      <div>
-        <h5>{this.props.candidate}</h5>
-        <h5>Current votes...</h5>
-        <h5>{this.props.votes}</h5>
-        <p onClick={this._castVote}>Click here to vote for {this.props.candidate}</p>
-      </div>
+      <img className="candidate" onClick={this._castVote} src={`Image${this.props.index}.svg`}/>
     );
   }
 }

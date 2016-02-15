@@ -33,18 +33,22 @@ export default class Vote extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>What do you think Pluto should be called?</h2>
-        <h2>This is where you vote...</h2>
-        {this.state.data.map((item, index) =>
-          <Candidate
-            key={index}
-            index={index}
-            candidate={item.description}
-            votes={item.votes}
-            castVote={this.handleCastVote}
-          />
-        )}
+      <div className="vote">
+        <div className="question">
+          <h1>What do you think</h1>
+          <h1>Pluto should be called?</h1>
+        </div>
+        <div className="voting-area">
+          {this.state.data.map((item, index) =>
+            <Candidate
+              key={index}
+              index={index}
+              candidate={item.description}
+              votes={item.votes}
+              castVote={this.handleCastVote}
+            />
+          )}
+        </div>
       </div>
     );
   }

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
-// import Data from '../sample-data';
 
 export default class App extends React.Component {
   _returnSomething(something) {
@@ -11,11 +9,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <header className="site-header">
-          <Link to="/"><h1 className="title">Pluto Poll</h1></Link>
-          <Link to="/vote" className="link">Vote</Link>
-          <Link to="/results" className="link">Results</Link>
-        </header>
         <section className="content-section">
           {this.props.children || 'Welcome to the Pluto Poll'}
         </section>

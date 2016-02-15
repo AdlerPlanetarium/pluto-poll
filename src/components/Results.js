@@ -32,8 +32,7 @@ export default class Results extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>This is where results will go...</h2>
+      <div className="results">
         {this.state.data.map((item, index) =>
           <Bar
             key={index}
