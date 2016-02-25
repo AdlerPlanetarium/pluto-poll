@@ -8,39 +8,40 @@
 
 .bar
   width 20%
-  height 500px
-  font-size 2em
+  height 100%
   position relative
   display flex
-  justify-content space-between
-  padding 0 5px
-  .name
-    align-self flex-start
-    //position absolute
-    // bottom 0
-    // left: 0
-    background-color black
-    white-space nowrap
-    // /* Safari */
-    -webkit-transform rotate(-90deg)
-    /* Firefox */
-    -moz-transform rotate(-90deg)
-    /* IE */
-    -ms-transform rotate(-90deg)
-    /* Opera */
-    -o-transform rotate(-90deg)
-  .percentage
-    color black
+  flex-direction row
+  align-items flex-end
+  font-size 2em
+
+.name
+  transform-origin left top 0
+  white-space nowrap
+  /* Safari */
+  -webkit-transform rotate(-90deg)
+  /* Firefox */
+  -moz-transform rotate(-90deg)
+  /* IE */
+  -ms-transform rotate(-90deg)
+  /* Opera */
+  -o-transform rotate(-90deg)
+
+.percentage
+  color black
+  padding 5px 10px
 
 .result-container
   position absolute
-  height 400px
+  height 100%
   bottom: 0
   right 0
-  text-align: center;
-  background-color rgba(255,255,255,0.2)
+  text-align left
+  background-color rgba(28, 132, 142, 0.50)
   width 70%
-  border-radius 20px
+  border-radius 10px
+  box-shadow inset -10px 10px 20px 0px #15636b
+  border-left: thin solid white;
 
 .result-bar
   position absolute
@@ -48,5 +49,6 @@
   background-color #FBD508
   width 100%
   vertical-align top
-  border-bottom-left-radius 20px
-  border-bottom-right-radius 20px
+  border-bottom-left-radius 10px
+  border-bottom-right-radius 10px
+  box-shadow inset -10px 0px 20px 0px #d5b625

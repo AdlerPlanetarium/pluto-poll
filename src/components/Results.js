@@ -27,7 +27,7 @@ export default class Results extends React.Component {
   _calcPercentage(votes) {
     const totalVotes = this.state.data.map(item => item.votes).reduce((a, b) => a + b);
 
-    return Math.round((votes / totalVotes) * 100);
+    return Math.round((votes / totalVotes) * 100) + '%';
   }
 
   render() {
