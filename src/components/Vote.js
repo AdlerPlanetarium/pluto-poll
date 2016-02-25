@@ -49,7 +49,6 @@ export default class Vote extends React.Component {
             />
           )}
         </div>
-        <img src="Heart-Image.svg"/>
       </div>
     );
   }
