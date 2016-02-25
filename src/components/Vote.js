@@ -1,5 +1,5 @@
 import React from 'react';
-import Candidate from './Candidate';
+import Candidate from './VoteCandidate';
 
 import Rebase from 're-base';
 const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
@@ -49,6 +49,7 @@ export default class Vote extends React.Component {
             />
           )}
         </div>
+        <img src="Heart-Image.svg"/>
       </div>
     );
   }

@@ -13,7 +13,9 @@ export default class Candidate extends React.Component {
 
   render() {
     return (
-      <img className="candidate" onClick={this._castVote} src={`Image${this.props.index}.svg`}/>
+      <div className="crop">
+        <img className="candidate" onClick={this._castVote} src={`Image${this.props.index}.png`}/>
+      </div>
     );
   }
 }

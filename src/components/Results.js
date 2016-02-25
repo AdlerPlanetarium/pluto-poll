@@ -1,5 +1,5 @@
 import React from 'react';
-import Bar from './Bar';
+import Bar from './ResultsBar';
 
 import Rebase from 're-base';
 const base = Rebase.createClass('https://pluto-poll.firebaseio.com');

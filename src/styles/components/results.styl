@@ -2,17 +2,26 @@
   height 100vh
   display flex
   flex-direction row
+  justify-content space-between
   align-items flex-end
   padding 60px 60px
 
 .bar
-  width 25%
+  width 20%
+  height 500px
   font-size 2em
+  position relative
+  display flex
+  justify-content space-between
+  padding 0 5px
   .name
-    position absolute
-    bottom 500px
+    align-self flex-start
+    //position absolute
+    // bottom 0
+    // left: 0
+    background-color black
     white-space nowrap
-    /* Safari */
+    // /* Safari */
     -webkit-transform rotate(-90deg)
     /* Firefox */
     -moz-transform rotate(-90deg)
@@ -22,3 +31,22 @@
     -o-transform rotate(-90deg)
   .percentage
     color black
+
+.result-container
+  position absolute
+  height 400px
+  bottom: 0
+  right 0
+  text-align: center;
+  background-color rgba(255,255,255,0.2)
+  width 70%
+  border-radius 20px
+
+.result-bar
+  position absolute
+  bottom 0
+  background-color #FBD508
+  width 100%
+  vertical-align top
+  border-bottom-left-radius 20px
+  border-bottom-right-radius 20px
