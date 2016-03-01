@@ -7,9 +7,7 @@ const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 export default class Vote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-    };
+    this.state = { data: [] };
     this.handleCastVote = this.handleCastVote.bind(this);
   }
 
@@ -42,6 +40,7 @@ export default class Vote extends React.Component {
           {this.state.data.map((item, index) =>
             <Candidate
               key={index}
+              ref="thing"
               index={index}
               candidate={item.description}
               votes={item.votes}

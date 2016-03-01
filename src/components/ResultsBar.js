@@ -15,5 +15,5 @@ export default class Bar extends React.Component {
 
 Bar.propTypes = {
   candidate: React.PropTypes.string,
-  percentage: React.PropTypes.number,
+  percentage: React.PropTypes.string,
 };
