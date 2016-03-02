@@ -39,13 +39,13 @@ export default class Candidate extends React.Component {
   render() {
     const wiggle = this.state.wiggle;
     return (
-      <img
-        key={this.props.candidate}
-        ref={this.props.candidate}
-        className={wiggle ? 'candidate wiggle' : 'candidate'}
-        onClick={this.castVote}
-        src={`Image${this.props.index}.png`}
-      />
+        <img
+          key={this.props.candidate}
+          ref={this.props.candidate}
+          className={wiggle ? 'candidate wiggle' : 'candidate'}
+          onClick={this.castVote}
+          src={`Image${this.props.index}.png`}
+        />
     );
   }
 }
