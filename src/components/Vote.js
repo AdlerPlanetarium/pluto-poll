@@ -40,7 +40,6 @@ export default class Vote extends React.Component {
           {this.state.data.map((item, index) =>
             <Candidate
               key={index}
-              ref="thing"
               index={index}
               candidate={item.description}
               votes={item.votes}

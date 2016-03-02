@@ -24,9 +24,11 @@ export default class Results extends React.Component {
     base.removeBinding(this.ref);
   }
 
-  _calcPercentage(votes) {
-    const totalVotes = this.state.data.map(item => item.votes).reduce((a, b) => a + b);
-
+  calcPercentage(votes) {
+    const totalVotes = this.state.data.map(item => parseInt(item.votes, 10)).reduce((a, b) => a + b);
+    if (totalVotes === 0) {
+      return '0%';
+    }
     return Math.round((votes / totalVotes) * 100) + '%';
   }
 
@@ -37,7 +39,7 @@ export default class Results extends React.Component {
           <Bar
             key={index}
             candidate={item.description}
-            percentage={this._calcPercentage(item.votes)}
+            percentage={this.calcPercentage(item.votes)}
           />
         )}
       </div>

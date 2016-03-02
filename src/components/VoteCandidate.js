@@ -12,25 +12,28 @@ export default class Candidate extends React.Component {
   }
 
   componentDidMount() {
-    const elm = this.refs.candidate;
-    elm.addEventListener('animationend', this.wiggleDone);
+    const anim = this.refs[this.props.candidate];
+    anim.addEventListener('animationend', this.wiggleDone);
   }
 
   componentWillUnmount() {
-    const elm = this.refs.candidate;
-    elm.removeEventListener('animationend', this.wiggleDone);
-  }
-
-  castVote() {
-    if (new Date() - lastClicked >= 10000) {
-      lastClicked = Date.now();
-      this.props.castVote(this.props.index);
-      this.setState({ wiggle: true });
-    }
+    const anim = this.refs[this.props.candidate];
+    anim.removeEventListener('animationend', this.wiggleDone);
   }
 
   wiggleDone() {
     this.setState({ wiggle: false });
+  }
+
+  castVote() {
+    if (new Date() - lastClicked >= 5000) {
+      lastClicked = Date.now();
+      this.props.castVote(this.props.index);
+      this.setState({ wiggle: true });
+      console.log('vote cast');
+    } else {
+      console.log('waiting for delay, vote not cast');
+    }
   }
 
   render() {
@@ -38,7 +41,7 @@ export default class Candidate extends React.Component {
     return (
       <img
         key={this.props.candidate}
-        ref="candidate"
+        ref={this.props.candidate}
         className={wiggle ? 'candidate wiggle' : 'candidate'}
         onClick={this.castVote}
         src={`Image${this.props.index}.png`}
