@@ -36,6 +36,7 @@ export default class Vote extends React.Component {
           <h1>What do you think</h1>
           <h1>Pluto should be called?</h1>
         </div>
+        <img className="heart" src="Heart-Image-Cropped.png"/>
         <div className="voting-area">
           {this.state.data.map((item, index) =>
             <Candidate

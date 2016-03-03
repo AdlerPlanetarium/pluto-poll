@@ -26,7 +26,7 @@ export default class Candidate extends React.Component {
   }
 
   castVote() {
-    if (new Date() - lastClicked >= 5000) {
+    if (new Date() - lastClicked >= 3000) {
       lastClicked = Date.now();
       this.props.castVote(this.props.index);
       this.setState({ wiggle: true });
