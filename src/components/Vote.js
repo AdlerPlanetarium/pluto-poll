@@ -26,6 +26,7 @@ export default class Vote extends React.Component {
   handleCastVote(index) {
     const newData = this.state.data;
     newData[index].votes++;
+    newData[index].totalVotes++;
     this.setState({ data: newData });
   }
 

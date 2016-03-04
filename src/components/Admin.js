@@ -6,7 +6,7 @@ const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 export default class Admin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], toggle: false };
+    this.state = { data: [0], toggle: false };
     this.handleVoteChange = this.handleVoteChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -23,12 +23,18 @@ export default class Admin extends React.Component {
     base.removeBinding(this.ref);
   }
 
-  handleVoteChange(e) {
-    const index = e.target.name;
-    const newVotes = e.target.value;
-    const newData = this.state.data;
-    newData[index].votes = newVotes;
-    this.setState({ data: newData });
+  getAllCurrentVotes() {
+    const allCurrentVotes = this.state.data
+      .map(item => parseInt(item.votes, 10))
+      .reduce((a, b) => a + b);
+    return allCurrentVotes;
+  }
+
+  getAllTotalVotes() {
+    const allTotalVotes = this.state.data
+      .map(item => parseInt(item.totalVotes, 10))
+      .reduce((a, b) => a + b);
+    return allTotalVotes;
   }
 
   handleReset() {
@@ -42,14 +48,22 @@ export default class Admin extends React.Component {
     }
   }
 
+  handleVoteChange(e) {
+    const index = e.target.name;
+    const newVotes = e.target.value;
+    const newData = this.state.data;
+    newData[index].votes = newVotes;
+    this.setState({ data: newData });
+  }
+
   render() {
     return (
       <div className="admin">
         <h1>Edit Votes...</h1>
-        <br></br>
         {this.state.data.map((item, index) =>
-          <div key={`${item.description}-${this.state.toggle}`}>
-            <label>{item.description}{' - '}
+          <div className="adminItem" key={`${item.description}-${this.state.toggle}`}>
+            <h3>{item.description}</h3>
+            <label>Current Votes {' - '}
             <input
               type="number"
               name={index}
@@ -57,10 +71,13 @@ export default class Admin extends React.Component {
               onChange={this.handleVoteChange}
             ></input>
             </label>
+            <h4>Cumulative Votes - {item.totalVotes}</h4>
           </div>
         )}
+        <button onClick={this.handleReset}>Reset All Current Votes</button>
         <br></br>
-        <button onClick={this.handleReset}>Reset All</button>
+        <h4>Current Vote Total - {this.getAllCurrentVotes()}</h4>
+        <h4>Cumulative Vote Total - {this.getAllTotalVotes()}</h4>
       </div>
     );
   }

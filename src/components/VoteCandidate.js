@@ -30,9 +30,9 @@ export default class Candidate extends React.Component {
       lastClicked = Date.now();
       this.props.castVote(this.props.index);
       this.setState({ wiggle: true });
-      console.log('vote cast');
+      // console.log('vote cast');
     } else {
-      console.log('waiting for delay, vote not cast');
+      // console.log('waiting for delay, vote not cast');
     }
   }
 

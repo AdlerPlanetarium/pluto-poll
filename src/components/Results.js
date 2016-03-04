@@ -25,7 +25,9 @@ export default class Results extends React.Component {
   }
 
   calcPercentage(votes) {
-    const totalVotes = this.state.data.map(item => parseInt(item.votes, 10)).reduce((a, b) => a + b);
+    const totalVotes = this.state.data
+      .map(item => parseInt(item.votes, 10))
+      .reduce((a, b) => a + b);
     if (totalVotes === 0) {
       return '0%';
     }
