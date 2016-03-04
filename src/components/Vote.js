@@ -35,7 +35,7 @@ export default class Vote extends React.Component {
       <div className="vote">
         <div className="question">
           <h1>What do you think</h1>
-          <h1>Pluto should be called?</h1>
+          <h1 className="tighten">Pluto should be called?</h1>
         </div>
         <img className="heart" src="Heart-Image-Cropped.png"/>
         <div className="voting-area">
