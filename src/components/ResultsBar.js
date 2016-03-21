@@ -11,7 +11,7 @@ export default class Bar extends React.Component {
             className="result-bar"
             style={{ height: this.props.percentage }}
           >
-            <h5 className="percentage">{this.props.percentage}</h5>
+            <h5 className="percentage">{this.props.votes}</h5>
           </div>
         </div>
       </div>
@@ -21,5 +21,6 @@ export default class Bar extends React.Component {
 
 Bar.propTypes = {
   candidate: React.PropTypes.string,
+  votes: React.PropTypes.number,
   percentage: React.PropTypes.string,
 };

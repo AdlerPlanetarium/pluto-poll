@@ -41,6 +41,7 @@ export default class Results extends React.Component {
           <Bar
             key={index}
             candidate={item.description}
+            votes={item.votes}
             percentage={this.calcPercentage(item.votes)}
           />
         )}
