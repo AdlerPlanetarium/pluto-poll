@@ -1,10 +1,8 @@
 import React from 'react';
 import Bar from './ResultsBar';
 
-// import Rebase from 're-base';
-// const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
-
-import mockData from '../sample-data';
+import Rebase from 're-base';
+const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -16,30 +14,30 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    // this.ref = base.bindToState('/', {
-    //   context: this,
-    //   state: 'data',
-    //   asArray: true,
-    // });
+    this.ref = base.bindToState('/', {
+      context: this,
+      state: 'data',
+      asArray: true,
+    });
     this.checkTime();
   }
 
   componentWillUnmount() {
-    // base.removeBinding(this.ref);
+    base.removeBinding(this.ref);
     clearInterval(this.state.intervalID);
   }
 
   checkTime() {
     const intervalID = setInterval(() => {
       const date = new Date();
-      if (date.getMinutes() === 30) {
+      if (date.getHours() === 3) {
         const newData = this.state.data;
         for (const item of newData) {
           item.votes = 0;
         }
         this.setState({ data: newData });
       }
-    }, 60000);
+    }, 3600000);
     this.setState({ intervalID });
   }
 
