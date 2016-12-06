@@ -1,27 +1,46 @@
 import React from 'react';
 import Bar from './ResultsBar';
 
-import Rebase from 're-base';
-const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
+// import Rebase from 're-base';
+// const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
+
+import mockData from '../sample-data';
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: mockData,
+      intervalID: undefined,
     };
   }
 
   componentDidMount() {
-    this.ref = base.bindToState('/', {
-      context: this,
-      state: 'data',
-      asArray: true,
-    });
+    // this.ref = base.bindToState('/', {
+    //   context: this,
+    //   state: 'data',
+    //   asArray: true,
+    // });
+    this.checkTime();
   }
 
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    // base.removeBinding(this.ref);
+    clearInterval(this.state.intervalID);
+  }
+
+  checkTime() {
+    const intervalID = setInterval(() => {
+      const date = new Date();
+      if (date.getMinutes() === 30) {
+        const newData = this.state.data;
+        for (const item of newData) {
+          item.votes = 0;
+        }
+        this.setState({ data: newData });
+      }
+    }, 60000);
+    this.setState({ intervalID });
   }
 
   calcPercentage(votes) {
