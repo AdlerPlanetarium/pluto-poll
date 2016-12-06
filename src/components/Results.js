@@ -9,6 +9,7 @@ export default class Results extends React.Component {
     super(props);
     this.state = {
       data: [],
+      intervalID: undefined,
     };
   }
 
@@ -18,10 +19,26 @@ export default class Results extends React.Component {
       state: 'data',
       asArray: true,
     });
+    this.checkTime();
   }
 
   componentWillUnmount() {
     base.removeBinding(this.ref);
+    clearInterval(this.state.intervalID);
+  }
+
+  checkTime() {
+    const intervalID = setInterval(() => {
+      const date = new Date();
+      if (date.getHours() === 3) {
+        const newData = this.state.data;
+        for (const item of newData) {
+          item.votes = 0;
+        }
+        this.setState({ data: newData });
+      }
+    }, 3600000);
+    this.setState({ intervalID });
   }
 
   calcPercentage(votes) {
