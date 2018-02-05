@@ -8,8 +8,8 @@ import Admin from './components/Admin';
 
 // Todo: let's find a better way to include Styles,
 // currently Styles looks like an unused var to eslint
-/* eslint "no-unused-vars": 1 */
-import Styles from './styles/main.styl';
+
+import Styles from './styles/main.styl'; // eslint-disable-line no-unused-vars
 
 window.React = React;
 
