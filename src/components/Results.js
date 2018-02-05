@@ -7,19 +7,25 @@ const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       data: [],
       intervalID: undefined,
     };
+
+    this.setTimer = this.setTimer.bind(this);
+    this.initialReset = this.initialReset.bind(this);
+    this.resetVotes = this.resetVotes.bind(this);
   }
 
   componentDidMount() {
-    this.ref = base.bindToState('/', {
+    this.ref = base.syncState('/', {
       context: this,
       state: 'data',
       asArray: true,
+      then: this.initialReset,
     });
-    this.checkTime();
+    this.setTimer();
   }
 
   componentWillUnmount() {
@@ -27,18 +33,40 @@ export default class Results extends React.Component {
     clearInterval(this.state.intervalID);
   }
 
-  checkTime() {
+  setTimer() {
     const intervalID = setInterval(() => {
       const date = new Date();
-      if (date.getHours() === 3) {
-        const newData = this.state.data;
-        for (const item of newData) {
-          item.votes = 0;
-        }
-        this.setState({ data: newData });
+      const day = date.getDay();
+
+      const resetDate = new Date(this.state.data[0].reset);
+      const resetDay = resetDate.getDay();
+
+      if (day !== resetDay) {
+        this.resetVotes(date);
       }
-    }, 3600000);
+    }, 600000);
     this.setState({ intervalID });
+  }
+
+  initialReset() {
+    const date = new Date();
+    const day = date.getDay();
+
+    const resetDate = new Date(this.state.data[0].reset);
+    const resetDay = resetDate.getDay();
+
+    if (day !== resetDay) {
+      this.resetVotes(date);
+    }
+  }
+
+  resetVotes(date) {
+    const newData = this.state.data;
+    for (const item of newData) {
+      item.votes = 0;
+      item.reset = date.toString();
+    }
+    this.setState({ data: newData });
   }
 
   calcPercentage(votes) {

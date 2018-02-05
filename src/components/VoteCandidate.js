@@ -53,6 +53,9 @@ export default class Candidate extends React.Component {
 Candidate.propTypes = {
   index: React.PropTypes.number,
   candidate: React.PropTypes.string,
-  votes: React.PropTypes.number,
+  votes: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ]),
   castVote: React.PropTypes.func,
 };

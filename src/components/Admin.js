@@ -6,7 +6,12 @@ const base = Rebase.createClass('https://pluto-poll.firebaseio.com');
 export default class Admin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: [0], toggle: false };
+
+    this.state = {
+      data: [0],
+      toggle: false,
+    };
+
     this.handleVoteChange = this.handleVoteChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -38,11 +43,15 @@ export default class Admin extends React.Component {
   }
 
   handleReset() {
-    if (window.confirm('Are you sure you want to reset all votes?')) {
+    if (window.confirm(  // eslint-disable-line no-alert
+      'Are you sure you want to reset all votes?'
+    )) {
       const newData = this.state.data;
       const newToggle = !this.state.toggle;
+      const date = new Date();
       for (const item of newData) {
         item.votes = 0;
+        item.reset = date.toString();
       }
       this.setState({ data: newData, toggle: newToggle });
     }

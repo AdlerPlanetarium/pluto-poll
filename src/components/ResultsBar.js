@@ -21,6 +21,9 @@ export default class Bar extends React.Component {
 
 Bar.propTypes = {
   candidate: React.PropTypes.string,
-  votes: React.PropTypes.number,
+  votes: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string,
+  ]),
   percentage: React.PropTypes.string,
 };
