@@ -36,12 +36,12 @@ export default class Results extends React.Component {
   setTimer() {
     const intervalID = setInterval(() => {
       const date = new Date();
-      const day = date.getDay();
+      const dayOfMonth = date.getDate();
 
       const resetDate = new Date(this.state.data[0].reset);
-      const resetDay = resetDate.getDay();
+      const resetDayOfMonth = resetDate.getDate();
 
-      if (day !== resetDay) {
+      if (dayOfMonth !== resetDayOfMonth) {
         this.resetVotes(date);
       }
     }, 600000);
@@ -50,12 +50,12 @@ export default class Results extends React.Component {
 
   initialReset() {
     const date = new Date();
-    const day = date.getDay();
+    const dayOfMonth = date.getDate();
 
     const resetDate = new Date(this.state.data[0].reset);
-    const resetDay = resetDate.getDay();
+    const resetDayOfMonth = resetDate.getDate();
 
-    if (day !== resetDay) {
+    if (dayOfMonth !== resetDayOfMonth) {
       this.resetVotes(date);
     }
   }
