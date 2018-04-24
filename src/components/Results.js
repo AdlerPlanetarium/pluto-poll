@@ -13,9 +13,9 @@ export default class Results extends React.Component {
       intervalID: undefined,
     };
 
-    this.setTimer = this.setTimer.bind(this);
     this.initialReset = this.initialReset.bind(this);
     this.resetVotes = this.resetVotes.bind(this);
+    this.setTimer = this.setTimer.bind(this);
   }
 
   componentDidMount() {
@@ -35,13 +35,16 @@ export default class Results extends React.Component {
 
   setTimer() {
     const intervalID = setInterval(() => {
+      console.log('interval check');
       const date = new Date();
-      const day = date.getDay();
+      const dayOfMonth = date.getDate();
 
       const resetDate = new Date(this.state.data[0].reset);
-      const resetDay = resetDate.getDay();
-
-      if (day !== resetDay) {
+      const resetDayOfMonth = resetDate.getDate();
+      console.log('day = ', dayOfMonth);
+      console.log('resetDay = ', resetDayOfMonth);
+      if (dayOfMonth !== resetDayOfMonth) {
+        console.log('reseting...');
         this.resetVotes(date);
       }
     }, 600000);
@@ -49,13 +52,17 @@ export default class Results extends React.Component {
   }
 
   initialReset() {
+    console.log('initialReset check');
     const date = new Date();
-    const day = date.getDay();
+    const dayOfMonth = date.getDate();
 
     const resetDate = new Date(this.state.data[0].reset);
-    const resetDay = resetDate.getDay();
+    const resetDayOfMonth = resetDate.getDate();
 
-    if (day !== resetDay) {
+    console.log('day = ', dayOfMonth);
+    console.log('resetDay = ', resetDayOfMonth);
+    if (dayOfMonth !== resetDayOfMonth) {
+      console.log('reseting...');
       this.resetVotes(date);
     }
   }
@@ -66,6 +73,7 @@ export default class Results extends React.Component {
       item.votes = 0;
       item.reset = date.toString();
     }
+    console.log('reset with newData = ', newData);
     this.setState({ data: newData });
   }
 
