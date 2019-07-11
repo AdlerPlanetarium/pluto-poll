@@ -6,10 +6,9 @@ import Vote from './components/Vote';
 import Results from './components/Results';
 import Admin from './components/Admin';
 
-// Todo: let's find a better way to include Styles,
-// currently Styles looks like an unused var to eslint
+// Todo: let's find a better way to include Styles
 
-import Styles from './styles/main.styl'; // eslint-disable-line no-unused-vars
+import Styles from './styles/main.styl';
 
 window.React = React;
 

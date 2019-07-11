@@ -43,7 +43,7 @@ export default class Admin extends React.Component {
   }
 
   handleReset() {
-    if (window.confirm(  // eslint-disable-line no-alert
+    if (window.confirm(
       'Are you sure you want to reset all votes?'
     )) {
       const newData = this.state.data;
